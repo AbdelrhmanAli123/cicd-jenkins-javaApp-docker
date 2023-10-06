@@ -11,6 +11,6 @@ public class WebAppController {
 
 	@GetMapping("/hello")
 	public String hello() {
-		return "<h1 style=\"color: hotpink; font-size: 40px; font: cursive;\">Hello, World i luv egypiiiiit dsabhda </h1>";
+		return "<h1 style=\"color: hotpink; font-size: 40px; font: cursive;\">Hello, World i luv dajddasdkkadadmk </h1>";
 	} 
 }
