@@ -24,9 +24,9 @@ pipeline {
             steps {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
                 sh """ 
-                    docker build . -t  javaimage:${GET_COMMIT.TAKE(8)}
+                    docker build . -t  abdelrhmandevops/javaimage:${BUILD_NUMBER}
                     docker login -u ${username} -p ${password}
-                    docker push abdelrhmandevops/javaimage:${GET_COMMIT.TAKE(8)}
+                    docker push abdelrhmandevops/javaimage:${BUILD_NUMBER}
                     """
                 } 
             }
@@ -35,8 +35,8 @@ pipeline {
             steps{
                 sh """
                     docker stop javaApp || true && docker rm javaApp || true
-                    docker pull abdelrhmandevops/javaimage:${GET_COMMIT.TAKE(8)}
-                    docker run --name javaApp -d -p 8081:8081 abdelrhmandevops/javaimage:${GET_COMMIT.TAKE(8)}
+                    docker pull abdelrhmandevops/javaimage:${BUILD_NUMBER}
+                    docker run --name javaApp -d -p 8081:8081 abdelrhmandevops/javaimage:${BUILD_NUMBER}
                 """
             }
         }
